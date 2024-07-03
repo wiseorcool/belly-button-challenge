@@ -15,7 +15,7 @@ function buildMetadata(sample) {
     // Inside a loop, you will need to use d3 to append new
     // tags for each key-value in the filtered metadata.
     Object.entries(result).forEach(([key, value]) => {
-      panel.append("h6").text(`${key.toUpperCase()}: ${value}`);
+      panel.append("h6").text(`${key()}: ${value}`);
     });
 
   });
@@ -41,10 +41,9 @@ function buildCharts(sample) {
     // Build a Bubble Chart
     const bubbleLayout = {
       title: 'Bacteria Cultures Per Sample',
-      margin: { t: 0 },
-      hovermode: 'closest',
       xaxis: { title: 'OTU ID' },
-      margin: { t: 30 }
+      yaxis: { title: 'SAMPLE VALUES' }
+
     };
 
     const bubbleData = [{
@@ -79,10 +78,7 @@ function buildCharts(sample) {
 
     const barLayout = {
       title: 'Top 10 Bacteria Cultures Found',
-      margin: { t: 30, l: 150 }
     };
-    // Don't forget to slice and reverse the input data appropriately
-
 
     // Render the Bar Chart
     Plotly.newPlot('bar', barData, barLayout);
